@@ -17,7 +17,7 @@ $username = trim($data['username']);
 $password = trim($data['password']);
 
 try {
-    $stmt = $conn->prepare("SELECT * FROM customers WHERE username = ? AND password = ?");
+    $stmt = $conn->prepare("SELECT * FROM employees WHERE username = ? AND password = ?");
     $stmt->execute([$username, $password]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -26,7 +26,7 @@ try {
             "success" => true,
             "message" => "Login successful.",
             "user" => [
-                "id" => $user['customer_id'],
+                "id" => $user['employee_id'],
                 "username" => $user['username']
             ]
         ]);

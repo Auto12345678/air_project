@@ -1,7 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg " style="background-color: #39BF4A;">
   <div class="container">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <!-- Login admin ใน Navbar -->
+    <a class="navbar-brand" href="*">SkyDrop</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,10 +18,6 @@
 
         <li class="nav-item">
           <a class="nav-link" href="/employees">Employees</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/student">Student</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -53,29 +50,62 @@
            <!-- แสดงเฉพาะเมื่อยังไม่ได้เข้าสู่ระบบ -->
           <template v-else>
             <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link active" aria-current="page" href="/">หน้าหลัก</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Login
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/login_custom">Login</a></li>
-            <li><a class="dropdown-item" href="#" @click="logout">Logout</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="/add_custom">Register</a></li>
-          </ul>
-        </li>
+        
 
          <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="*">ค้นหาเที่ยวบิน</a>
         </li>
+
+        <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-airplane-fill me-2"></i>จองตั๋วเครื่องบิน
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a class="dropdown-item" href="*">
+        <i class="bi bi-plus-circle me-2"></i>จองตั๋วเครื่องบิน
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="*">
+        <i class="bi bi-credit-card me-2"></i>ชำระเงิน
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="*">
+        <i class="bi bi-search me-2"></i>ตรวจสอบสถานะการจอง
+      </a>
+    </li>
+    <li><hr class="dropdown-divider"></li> <li>
+      <a class="dropdown-item" href="*">
+        <i class="bi bi-x-circle me-2"></i>ยกเลิกหรือเปลี่ยนเที่ยวบิน
+      </a>
+    </li>
+  </ul>
+</li>
+
+        <li class="nav- dropdown">
+
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  เข้าสู่ระบบ
+</a>
+
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="/login_customer">เข้าสู่ระบบ (ลูกค้า)</a></li>
+    
+    <li><a class="dropdown-item" href="/login_employee">เข้าสู่ระบบ (ผู้ดูแล)</a></li>
+    
+    <li><hr class="dropdown-divider"></li>
+    
+    <li><a class="dropdown-item" href="/register">สมัครสมาชิก</a></li>
+  </ul>
+
+</li>
+
           </template>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>

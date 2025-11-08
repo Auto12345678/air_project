@@ -13,18 +13,22 @@
       <th>ID</th>
       <th>ชื่อ</th>
       <th>นามสกุล</th>
-      <th>เบอร์โทร</th>
+      <th>อีเมล</th>
+      <th>เบอร์โทรศัพท์</th>
       <th>ชื่อผู้ใช้</th>
+      <th>รหัสผ่าน</th>
       <th>ลบ</th>
     </tr>
   </thead>
   <tbody>
     <tr v-for="customer in customers" :key="customer.customer_id">
       <td>{{ customer.customer_id }}</td>
-      <td>{{ customer.firstName }}</td>
-      <td>{{ customer.lastName }}</td>
-      <td>{{ customer.phone }}</td>
+      <td>{{ customer.firstname }}</td>
+      <td>{{ customer.lastname }}</td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.tel }}</td>
       <td>{{ customer.username }}</td>
+      <td>{{ customer.password }}</td>
       <!--เพิ่มปุ่มลบ -->
       <td>  
   <button class="btn btn-danger btn-sm" @click="deleteCustomer(customer.customer_id)">ลบ</button>
@@ -57,7 +61,7 @@ export default {
     // ฟังก์ชันดึงข้อมูลจาก API ด้วย GET
     const fetchCustomers = async () => {
       try {
-        const response = await fetch("http://localhost/project-67706177/api_php/show_customer.php", {
+        const response = await fetch("http://localhost/air-project/api_php/show_customer.php", {
           method: "GET",
           headers: {
             "Content-Type": "application/json"

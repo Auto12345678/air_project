@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2025 at 07:56 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Nov 08, 2025 at 10:43 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_shop`
+-- Database: `air_shop`
 --
 
 -- --------------------------------------------------------
@@ -29,21 +29,24 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `customers` (
   `customer_id` int(11) NOT NULL,
-  `firstName` varchar(50) NOT NULL,
-  `lastName` varchar(50) NOT NULL,
-  `phone` varchar(15) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(128) NOT NULL
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `tel` varchar(30) DEFAULT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`customer_id`, `firstName`, `lastName`, `phone`, `username`, `password`) VALUES
-(2, 'Anong', 'Srisuk', '0898765432', 'anongs', 'securepass456'),
-(4, '2', '3', '2', '5', '$2y$10$W7Wsje8/i4TlZ0WqiNlkFuPO7rq8Znarlw57mE8PFL8gzymumAV/C'),
-(6, '3', '3', '3', '3', '$2y$10$2gKpn7NFXKEJyGDHiXGJP.G3Zw9TkFUeWFWUJujbyPmgTqcF8Hjxu');
+INSERT INTO `customers` (`customer_id`, `firstname`, `lastname`, `email`, `tel`, `username`, `password`, `created_at`) VALUES
+(1, 'สมชาย', 'ใจดี', 'somchai.j@example.com', '0812345678', 'somchai', 'pass123', '2025-11-08 08:39:49'),
+(2, 'สมหญิง', 'รักไทย', 'somying.r@example.com', '0987654321', 'somying', 'admin999', '2025-11-08 08:39:49'),
+(3, 'ศุภกร', 'ป้อมเนียม', '@dfg.com', '12345', 'WP', '$2y$10$9WJdSvLyTNu4BJs0Pt2e7.C8377DozPl2FeL8r0IsSgOHD4iZpvSG', '2025-11-08 08:58:05'),
+(4, '1', '1', '1', '1', '1', '1', '2025-11-08 09:02:23');
 
 -- --------------------------------------------------------
 
@@ -134,12 +137,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `description`, `price`, `image`, `stock`, `created_at`) VALUES
-(1, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', '199.00', 'tshirt.jpg', 50, '2025-09-19 17:29:36'),
-(2, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', '799.00', 'jeans.jpg', 30, '2025-09-19 17:29:36'),
-(3, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', '1299.00', 'sneakers.jpg', 20, '2025-09-19 17:29:36'),
-(5, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', '199.00', 'tshirt.jpg', 50, '2025-10-17 16:49:42'),
-(6, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', '799.00', 'jeans.jpg', 30, '2025-10-17 16:49:42'),
-(7, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', '1299.00', 'sneakers.jpg', 20, '2025-10-17 16:49:42');
+(1, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', 199.00, 'tshirt.jpg', 50, '2025-09-19 17:29:36'),
+(2, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', 799.00, 'jeans.jpg', 30, '2025-09-19 17:29:36'),
+(3, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', 1299.00, 'sneakers.jpg', 20, '2025-09-19 17:29:36'),
+(5, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', 199.00, 'tshirt.jpg', 50, '2025-10-17 16:49:42'),
+(6, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', 799.00, 'jeans.jpg', 30, '2025-10-17 16:49:42'),
+(7, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', 1299.00, 'sneakers.jpg', 20, '2025-10-17 16:49:42');
 
 -- --------------------------------------------------------
 
@@ -172,7 +175,9 @@ INSERT INTO `students` (`student_id`, `first_name`, `last_name`, `email`, `phone
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
-  ADD PRIMARY KEY (`customer_id`);
+  ADD PRIMARY KEY (`customer_id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `employees`
@@ -219,7 +224,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `employees`

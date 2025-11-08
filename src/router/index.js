@@ -7,13 +7,8 @@ const routes = [
     name: 'home',
     component: HomeView
   },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
-  }
-,
-{
+
+ {
     path: '/show',
     name: 'show',
     component: () => import('../views/ShowProduct.vue')
@@ -44,18 +39,6 @@ const routes = [
   },
 
   {
-    path: '/student',
-    name: 'student',
-    component: () => import('../views/Student.vue')
-  },
-
-  {
-    path: '/add_student',
-    name: 'add_student',
-    component: () => import('../views/Add_student.vue')
-  },
-
-  {
     path: '/edit',
     name: 'edit',
     component: () => import('../views/Edit_customer.vue')
@@ -74,9 +57,21 @@ const routes = [
   },
 
   {
-    path: '/login_custom',
-    name: 'login_custom',
+    path: '/login_employee',
+    name: 'login_employee',
+    component: () => import('../views/login_employee.vue')
+  },
+
+  {
+    path: '/login_customer',
+    name: 'login_customer',
     component: () => import('../views/login_customer.vue')
+  },
+
+  {
+    path: '/Register',
+    name: 'Register',
+    component: () => import('../views/Register.vue')
   },
 
 ]
@@ -99,10 +94,14 @@ router.beforeEach((to, from, next) => {
   else if (to.path === "/login" && isLoggedIn) {
     next("/show");
   } 
+
+  
   // อื่น ๆ ไปต่อได้ตามปกติ
   else {
     next();
   }
 });
+
+
 
 export default router
