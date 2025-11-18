@@ -101,7 +101,7 @@ export default {
       // 4. ส่งข้อมูลไป API
       try {
         const res = await axios.post(
-          "http://localhost/air-project/api_php/show_customer.php", // API สำหรับสมัครสมาชิก
+          "http://localhost/air_project/api_php/show_customer.php", // API สำหรับสมัครสมาชิก
           {
             firstname: this.firstname,
             lastname: this.lastname,

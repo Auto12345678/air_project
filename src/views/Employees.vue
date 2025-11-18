@@ -26,7 +26,7 @@
           <td>
             <img
               v-if="employee.profile_picture"
-              :src="'http://localhost/project-67706177/api_php/uploads/' + employee.profile_picture"
+              :src="'http://localhost/project_67706177/api_php/uploads/' + employee.profile_picture"
               width="100"
             />
           </td>
@@ -84,7 +84,7 @@
                 <div v-if="isEditMode && editForm.profile_picture">
                   <p class="mt-2">รูปเดิม:</p>
                   <img
-                    :src="'http://localhost/project-67706177/api_php/uploads/' + editForm.profile_picture"
+                    :src="'http://localhost/project_67706177/api_php/uploads/' + editForm.profile_picture"
                     width="100"
                   />
                 </div>
@@ -125,7 +125,7 @@ export default {
     // โหลดข้อมูลลูกจ้าง
     const fetchEmployees = async () => {
       try {
-        const res = await fetch("http://localhost/project-67706177/api_php/api_employees.php");
+        const res = await fetch("http://localhost/project_67706177/api_php/api_employees.php");
         const data = await res.json();
         employees.value = data.success ? data.data : [];
       } catch (err) {
@@ -183,7 +183,7 @@ export default {
       if (newImageFile.value) formData.append("profile_picture", newImageFile.value);
 
       try {
-        const res = await fetch("http://localhost/project-67706177/api_php/api_employees.php", {
+        const res = await fetch("http://localhost/project_67706177/api_php/api_employees.php", {
           method: "POST",
           body: formData
         });
@@ -210,7 +210,7 @@ const deleteEmployee = async (id) => {
   formData.append("employee_id", id); // ส่ง employee_id ไป
 
   try {
-    const response = await fetch("http://localhost/project-67706177/api_php/api_employees.php", {
+    const response = await fetch("http://localhost/project_67706177/api_php/api_employees.php", {
       method: "POST", // ใช้ POST แทน DELETE
       body: formData
     });

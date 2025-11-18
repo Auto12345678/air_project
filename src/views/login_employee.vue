@@ -33,13 +33,13 @@ export default {
   methods: {
     async login() {
       try {
-        const res = await axios.post("http://localhost/air-project/api_php/login_employee.php", {
+        const res = await axios.post("http://localhost/air_project/api_php/login_employee.php", {
           username: this.username,
           password: this.password,
         });
 
         if (res.data.success) {
-          localStorage.setItem("customerLogin", "true");
+          localStorage.setItem("employeeLogin", "true");
           this.$router.push("/employees");
         } else {
           this.error = res.data.message;

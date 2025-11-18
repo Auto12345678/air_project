@@ -39,7 +39,7 @@ export default {
       try {
         this.error = ""; // เคลียร์ error เก่า
         const res = await axios.post(
-          "http://localhost/air-project/api_php/login_customer.php", // เปลี่ยนเป็น API สำหรับลูกค้า
+          "http://localhost/air_project/api_php/login_customer.php", // เปลี่ยนเป็น API สำหรับลูกค้า
           {
             username: this.username,
             password: this.password,
