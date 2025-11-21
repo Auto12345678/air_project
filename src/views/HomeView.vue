@@ -77,7 +77,7 @@
           <div class="divider"></div>
           <div class="search-date-group">
             <span class="label">Date</span>
-            <span class="value">21 Nov 2025</span>
+            <span class="value">21 Nov 2021</span>
           </div>
           <button class="btn-search">
             <i class="fas fa-search"></i>
