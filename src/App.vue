@@ -51,17 +51,13 @@
               <a class="nav-link active" href="/">หน้าหลัก</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="#">ค้นหาเที่ยวบิน</a>
-            </li>
-
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-airplane-fill me-2"></i>จองตั๋วเครื่องบิน
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#"><i class="bi bi-plus-circle me-2"></i>จองตั๋วเครื่องบิน</a></li>
-                <li><a class="dropdown-item" href="#"><i class="bi bi-credit-card me-2"></i>ชำระเงิน</a></li>
+                <li><a class="dropdown-item" href="/log_air"><i class="bi bi-plus-circle me-2"></i>จองตั๋วเครื่องบิน</a></li>
+                <li><a class="dropdown-item" href="/pay"><i class="bi bi-credit-card me-2"></i>ชำระเงิน</a></li>
                 <li><a class="dropdown-item" href="#"><i class="bi bi-search me-2"></i>ตรวจสอบสถานะ</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#"><i class="bi bi-x-circle me-2"></i>ยกเลิก/เปลี่ยนเที่ยวบิน</a></li>
@@ -82,7 +78,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">ค้นหาเที่ยวบิน</a>
+              <a class="nav-link" href="/no_air">ค้นหาเที่ยวบิน</a>
             </li>
 
 
@@ -168,7 +164,7 @@ export default {
   background-color: #86bfe7ff !important; 
 }
 .nav-link {
-  color: white !important;
+  color: rgb(0, 0, 0) !important;
   font-weight: 500;
 }
 .nav-link:hover {

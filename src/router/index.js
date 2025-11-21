@@ -8,12 +8,6 @@ const routes = [
     component: HomeView
   },
 
- {
-    path: '/show',
-    name: 'show',
-    component: () => import('../views/ShowProduct.vue')
-  },
-
   {
     path: '/custom',
     name: 'custom',
@@ -25,29 +19,12 @@ const routes = [
     name: 'add_custom',
     component: () => import('../views/Add_customer.vue')
   },
-  
-  {
-    path: '/product',
-    name: 'product',
-    component: () => import('../views/Product.vue')
-  },
 
-  {
-    path: '/add_product',
-    name: 'add_product',
-    component: () => import('../views/Add_product.vue')
-  },
 
   {
     path: '/edit',
     name: 'edit',
     component: () => import('../views/Edit_customer.vue')
-  },
-
-  {
-    path: '/edit_product',
-    name: 'edit_product',
-    component: () => import('../views/product_edit.vue')
   },
 
   {
@@ -72,6 +49,24 @@ const routes = [
     path: '/Register',
     name: 'Register',
     component: () => import('../views/Register.vue')
+  },
+
+  {
+    path: '/no_air',
+    name: 'no_air',
+    component: () => import('../views/flight_noLogin.vue')
+  },
+
+  {
+    path: '/log_air',
+    name: 'log_air',
+    component: () => import('../views/flight_login.vue')
+  },
+
+  {
+    path: '/pay',
+    name: 'pay',
+    component: () => import('../views/scan_pay.vue')
   },
 
 ]
