@@ -7,68 +7,64 @@ const routes = [
     name: 'home',
     component: HomeView
   },
-
   {
-    path: '/custom',
-    name: 'custom',
+    path: '/customer',
+    name: 'customer',
     component: () => import('../views/Customer.vue')
   },
-
   {
     path: '/add_custom',
     name: 'add_custom',
     component: () => import('../views/Add_customer.vue')
   },
-
-
   {
     path: '/edit',
     name: 'edit',
     component: () => import('../views/Edit_customer.vue')
   },
-
   {
     path: '/employees',
     name: 'employees',
-    component: () => import('../views/Employees.vue')
+    component: () => import('../views/customer_detail.vue')
   },
-
   {
     path: '/login_employee',
     name: 'login_employee',
     component: () => import('../views/login_employee.vue')
   },
-
   {
     path: '/login_customer',
     name: 'login_customer',
     component: () => import('../views/login_customer.vue')
   },
-
   {
     path: '/Register',
     name: 'Register',
     component: () => import('../views/Register.vue')
   },
-
   {
     path: '/no_air',
     name: 'no_air',
     component: () => import('../views/flight_noLogin.vue')
   },
-
   {
     path: '/log_air',
     name: 'log_air',
     component: () => import('../views/flight_login.vue')
   },
-
+  
+  // ✅ แก้ไขตรงนี้ครับ เปลี่ยนจาก '/pay' เป็น '/payment'
   {
-    path: '/pay',
-    name: 'pay',
-    component: () => import('../views/scan_pay.vue')
+    path: '/payment', 
+    name: 'payment',
+    component: () => import('../views/PaymentPage.vue')
   },
 
+  {
+    path: '/check', 
+    name: 'check',
+    component: () => import('../views/check_status.vue')
+  },
 ]
 
 const router = createRouter({
@@ -76,7 +72,7 @@ const router = createRouter({
   routes
 })
 
-// ✅ Navigation Guard
+// ✅ Navigation Guard (เหมือนเดิม)
 router.beforeEach((to, from, next) => {
   const role = localStorage.getItem("role"); // 'admin' | 'customer' | null
   const isLoggedIn = !!role; // true ถ้ามีการล็อกอิน

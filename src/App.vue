@@ -12,31 +12,11 @@
 
           <template v-if="userRole === 'employee'">
             <li class="nav-item">
-              <a class="nav-link" href="/show">Show Product</a>
+              <a class="nav-link" href="/customer">ข้อมูลลูกค้า</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/employees">Employees</a>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Product
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/product">Product List</a></li>
-                <li><a class="dropdown-item" href="/edit_product">Product Edit</a></li>
-              </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Customer Admin
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/custom">Customer List</a></li>
-                <li><a class="dropdown-item" href="/edit">Customer Edit</a></li>
-              </ul>
+              <a class="nav-link" href="/employees">รายการจอง</a>
             </li>
 
              <li class="nav-item ms-lg-3">
@@ -57,8 +37,8 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/log_air"><i class="bi bi-plus-circle me-2"></i>จองตั๋วเครื่องบิน</a></li>
-                <li><a class="dropdown-item" href="/pay"><i class="bi bi-credit-card me-2"></i>ชำระเงิน</a></li>
-                <li><a class="dropdown-item" href="#"><i class="bi bi-search me-2"></i>ตรวจสอบสถานะ</a></li>
+                <li><a class="dropdown-item" href="/payment"><i class="bi bi-credit-card me-2"></i>ชำระเงิน</a></li>
+                <li><a class="dropdown-item" href="/check"><i class="bi bi-search me-2"></i>ตรวจสอบสถานะ</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#"><i class="bi bi-x-circle me-2"></i>ยกเลิก/เปลี่ยนเที่ยวบิน</a></li>
               </ul>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2025 at 11:04 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Nov 30, 2025 at 04:50 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,22 +31,32 @@ CREATE TABLE `bookings` (
   `id` int(11) NOT NULL,
   `flight_id` int(11) NOT NULL,
   `airline` varchar(100) NOT NULL,
-  `depart_time` varchar(20) NOT NULL,
+  `origin` varchar(100) NOT NULL,
+  `destination` varchar(100) NOT NULL,
+  `depart_time` varchar(50) NOT NULL,
   `passengers` int(11) NOT NULL,
   `total_price` decimal(10,2) NOT NULL,
-  `booking_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `payment_status` enum('pending','paid') DEFAULT 'pending'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `status` varchar(20) DEFAULT 'PENDING',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `flight_id`, `airline`, `depart_time`, `passengers`, `total_price`, `booking_date`, `payment_status`) VALUES
-(1, 1, 'Thai Airways', '08:30', 3, '6600.00', '2025-11-21 08:14:22', 'pending'),
-(2, 2, 'AirAsia', '10:00', 2, '2400.00', '2025-11-21 09:04:41', 'pending'),
-(3, 1, 'Thai Airways', '08:00', 1, '2500.00', '2025-11-21 09:05:48', 'pending'),
-(4, 1, 'Thai Airways', '08:00', 1, '2500.00', '2025-11-21 09:09:40', 'pending');
+INSERT INTO `bookings` (`id`, `flight_id`, `airline`, `origin`, `destination`, `depart_time`, `passengers`, `total_price`, `status`, `created_at`) VALUES
+(1, 1, 'Test Airline', 'กรุงเทพฯ', 'เชียงใหม่', '08:00', 1, 1000.00, 'PENDING', '2025-11-30 14:50:02'),
+(2, 0, 'Thai Airways', 'กรุงเทพฯ (BKK)', 'เชียงใหม่ (CNX)', '08:00', 2, 5000.00, 'PENDING', '2025-11-30 14:55:35'),
+(3, 0, 'AirAsia', 'ดอนเมือง (DMK)', 'ภูเก็ต (HKT)', '10:00', 1, 1200.00, 'PENDING', '2025-11-30 14:56:19'),
+(4, 0, 'Thai Airways', 'กรุงเทพฯ (BKK)', 'เชียงใหม่ (CNX)', '08:00', 1, 2500.00, 'PENDING', '2025-11-30 14:56:24'),
+(5, 0, 'AirAsia', 'ดอนเมือง (DMK)', 'ภูเก็ต (HKT)', '10:00', 1, 1200.00, 'PAID', '2025-11-30 14:56:30'),
+(6, 0, 'Thai Airways', 'กรุงเทพฯ (BKK)', 'เชียงใหม่ (CNX)', '08:00', 1, 2500.00, 'PENDING', '2025-11-30 14:58:06'),
+(7, 0, 'AirAsia', 'ดอนเมือง (DMK)', 'ภูเก็ต (HKT)', '10:00', 1, 1200.00, 'PENDING', '2025-11-30 15:03:55'),
+(8, 0, 'AirAsia', 'ดอนเมือง (DMK)', 'ภูเก็ต (HKT)', '10:00', 1, 1200.00, 'PAID', '2025-11-30 15:03:59'),
+(9, 0, 'Thai Airways', 'กรุงเทพฯ (BKK)', 'เชียงใหม่ (CNX)', '08:00', 2, 5000.00, 'PAID', '2025-11-30 15:15:56'),
+(10, 0, 'Thai Airways', 'กรุงเทพฯ (BKK)', 'เชียงใหม่ (CNX)', '08:00', 3, 7500.00, 'PAID', '2025-11-30 15:19:44'),
+(11, 1, 'Thai Airways', 'กรุงเทพฯ (BKK)', 'เชียงใหม่ (CNX)', '08:00', 4, 10000.00, 'PAID', '2025-11-30 15:22:55'),
+(12, 1, 'Thai Airways', 'กรุงเทพฯ (BKK)', 'เชียงใหม่ (CNX)', '08:00', 1, 2500.00, 'PAID', '2025-11-30 15:34:49');
 
 -- --------------------------------------------------------
 
@@ -164,12 +174,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `description`, `price`, `image`, `stock`, `created_at`) VALUES
-(1, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', '199.00', 'tshirt.jpg', 50, '2025-09-19 17:29:36'),
-(2, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', '799.00', 'jeans.jpg', 30, '2025-09-19 17:29:36'),
-(3, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', '1299.00', 'sneakers.jpg', 20, '2025-09-19 17:29:36'),
-(5, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', '199.00', 'tshirt.jpg', 50, '2025-10-17 16:49:42'),
-(6, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', '799.00', 'jeans.jpg', 30, '2025-10-17 16:49:42'),
-(7, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', '1299.00', 'sneakers.jpg', 20, '2025-10-17 16:49:42');
+(1, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', 199.00, 'tshirt.jpg', 50, '2025-09-19 17:29:36'),
+(2, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', 799.00, 'jeans.jpg', 30, '2025-09-19 17:29:36'),
+(3, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', 1299.00, 'sneakers.jpg', 20, '2025-09-19 17:29:36'),
+(5, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', 199.00, 'tshirt.jpg', 50, '2025-10-17 16:49:42'),
+(6, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', 799.00, 'jeans.jpg', 30, '2025-10-17 16:49:42'),
+(7, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', 1299.00, 'sneakers.jpg', 20, '2025-10-17 16:49:42');
 
 --
 -- Indexes for dumped tables
@@ -228,7 +238,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `customers`

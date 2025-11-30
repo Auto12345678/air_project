@@ -1,24 +1,24 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
-
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') { http_response_code(200); exit(); }
+header("Content-Type: application/json");
 
 $conn = new mysqli("localhost", "root", "", "air_shop");
-$data = json_decode(file_get_contents("php://input"));
+$conn->set_charset("utf8");
 
-if (!empty($data->booking_id)) {
-    $id = $data->booking_id;
-    // อัปเดตเป็น 'paid' (จ่ายแล้ว)
-    $sql = "UPDATE bookings SET payment_status = 'paid' WHERE id = $id";
+$data = json_decode(file_get_contents("php://input"), true);
+
+if (isset($data['booking_id'])) {
+    $booking_id = $conn->real_escape_string($data['booking_id']);
+    $sql = "UPDATE bookings SET status = 'PAID' WHERE id = '$booking_id'";
 
     if ($conn->query($sql) === TRUE) {
-        echo json_encode(["status" => "success"]);
+        echo json_encode(["status" => "success", "message" => "Payment confirmed"]);
     } else {
-        echo json_encode(["status" => "error", "message" => $conn->error]);
+        echo json_encode(["status" => "error", "message" => "Update failed"]);
     }
+} else {
+    echo json_encode(["status" => "error", "message" => "Invalid input"]);
 }
 $conn->close();
 ?>
