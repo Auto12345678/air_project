@@ -7,46 +7,48 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+
   {
     path: '/customer',
     name: 'customer',
     component: () => import('../views/Customer.vue')
   },
   {
-    path: '/add_custom',
-    name: 'add_custom',
-    component: () => import('../views/Add_customer.vue')
+    path: '/employee',
+    name: 'employee',
+    component: () => import('../views/Employees.vue')
   },
+
   {
-    path: '/edit',
-    name: 'edit',
-    component: () => import('../views/Edit_customer.vue')
-  },
-  {
-    path: '/employees',
-    name: 'employees',
+    path: '/detail',
+    name: 'detail',
     component: () => import('../views/customer_detail.vue')
   },
+
   {
     path: '/login_employee',
     name: 'login_employee',
     component: () => import('../views/login_employee.vue')
   },
+
   {
     path: '/login_customer',
     name: 'login_customer',
     component: () => import('../views/login_customer.vue')
   },
+
   {
     path: '/Register',
     name: 'Register',
     component: () => import('../views/Register.vue')
   },
+
   {
     path: '/no_air',
     name: 'no_air',
     component: () => import('../views/flight_noLogin.vue')
   },
+
   {
     path: '/log_air',
     name: 'log_air',

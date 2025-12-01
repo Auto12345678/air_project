@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2025 at 04:50 PM
+-- Generation Time: Dec 01, 2025 at 03:35 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -83,7 +83,9 @@ INSERT INTO `customers` (`customer_id`, `firstname`, `lastname`, `email`, `tel`,
 (1, 'สมชาย', 'ใจดี', 'somchai.j@example.com', '0812345678', 'somchai', 'pass123', '2025-11-08 08:39:49'),
 (2, 'สมหญิง', 'รักไทย', 'somying.r@example.com', '0987654321', 'somying', 'admin999', '2025-11-08 08:39:49'),
 (3, 'ศุภกร', 'ป้อมเนียม', '@dfg.com', '12345', 'WP', '$2y$10$9WJdSvLyTNu4BJs0Pt2e7.C8377DozPl2FeL8r0IsSgOHD4iZpvSG', '2025-11-08 08:58:05'),
-(4, '1', '1', '1', '1', '1', '1', '2025-11-08 09:02:23');
+(4, '2', '2', '2@2', '2', '2', '1', '2025-11-08 09:02:23'),
+(5, '1', '1', '1@1', '1', '1', '$2y$10$/lG6SfYlq6OCqZKXxF1Lm.Nx1xQybe0VuoiztpGkZ3zxzw3OPVoY6', '2025-12-01 14:28:57'),
+(6, '3', '3', '3@3', '3', '3', '3', '2025-12-01 14:33:31');
 
 -- --------------------------------------------------------
 
@@ -105,10 +107,10 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `first_name`, `last_name`, `username`, `password`, `profile_picture`) VALUES
-(3, 'Michael', 'Johnson', 'mikejohnson', 'mypassword789', 'michael_johnson.jpg'),
-(4, 'EmilyMonkey', 'Davis1112', 'emilydavis22', 'emily123433', '1760726888_Macaca_nigra_self-portrait_large.jpg'),
-(5, 'Autoๅๅๅ', 'Auto', 'Auto', '1234', '1760726853_10.webp'),
-(6, '112', '22', '11', '22', '1760726746_images.jfif');
+(18, 'จิรายุ', 'หิรัญวร', 'โอ้ตเด็กวัด', '$2y$10$faB03vrDW/S63kRJ.dC8ue6JvY2hvvOGiGNey4BmaKDAiU/Vbd1Oq', '1764598361_692da259e1c99.jpg'),
+(19, 'ศุภกร', 'ป้อมเนียม', 'Auto', '$2y$10$C1xFGuLqckbgL51OEnNb9.LOw904deDrkcv8/OZ//YbrSluF6INEe', '1764598423_692da2971ef12.jpg'),
+(20, 'สุเชษฎ', 'บุญมา', 'Win', '$2y$10$w4tJ.e6Q32ROPeos8U6tROaoqaHRrx0A8qZK/hIpm7Zcgy.EaOsoG', '1764598522_692da2fa14f3f.gif'),
+(21, 'พิชญาภัค', 'คนชม', 'พิชชี่', '$2y$10$Kgom5ZwQDOEPuTJuljC6buQS.F1oWaV9C1fN.29Xuiv35mlUmChvi', '1764598597_692da34530884.webp');
 
 -- --------------------------------------------------------
 
@@ -244,13 +246,13 @@ ALTER TABLE `bookings`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `orderdetails`

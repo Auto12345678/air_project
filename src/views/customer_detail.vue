@@ -25,7 +25,6 @@
                     <thead class="bg-primary text-white">
                         <tr>
                             <th class="ps-4 py-3">Book ID</th>
-                            <th class="py-3 text-center">Cus ID</th> <!-- ✅ เปลี่ยนเป็น Cus ID -->
                             <th class="py-3">เที่ยวบิน</th>
                             <th class="py-3">เวลาเดินทาง</th>
                             <th class="text-center py-3">ยอดรวม</th>
@@ -37,14 +36,6 @@
                         <tr v-for="booking in bookings" :key="booking.id">
                             <!-- Booking ID -->
                             <td class="ps-4 fw-bold text-primary">#{{ booking.id }}</td>
-                            
-                            <!-- ✅ Customer ID (แสดงแค่นี้ตามต้องการ) -->
-                            <td class="text-center">
-                                <span v-if="booking.customer_id" class="badge bg-light text-dark border">
-                                    {{ booking.customer_id }}
-                                </span>
-                                <span v-else class="text-muted small">-</span>
-                            </td>
                             
                             <!-- เที่ยวบิน -->
                             <td>

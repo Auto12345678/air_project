@@ -16,7 +16,11 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/employees">รายการจอง</a>
+              <a class="nav-link" href="/employee">ข้อมูลพนักงาน</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/detail">รายการจอง</a>
             </li>
 
              <li class="nav-item ms-lg-3">
@@ -37,10 +41,8 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/log_air"><i class="bi bi-plus-circle me-2"></i>จองตั๋วเครื่องบิน</a></li>
-                <li><a class="dropdown-item" href="/payment"><i class="bi bi-credit-card me-2"></i>ชำระเงิน</a></li>
                 <li><a class="dropdown-item" href="/check"><i class="bi bi-search me-2"></i>ตรวจสอบสถานะ</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#"><i class="bi bi-x-circle me-2"></i>ยกเลิก/เปลี่ยนเที่ยวบิน</a></li>
               </ul>
             </li>
             
