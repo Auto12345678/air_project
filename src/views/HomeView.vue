@@ -3,7 +3,7 @@
     <!-- Background Elements -->
     <div class="sky-gradient-bg"></div>
   
-    
+    <!-- Header (Navbar) ถูกลบออกแล้วตามที่คุณต้องการ -->
 
     <!-- Main Content -->
     <main class="main-content">
@@ -13,73 +13,73 @@
         <i class="fas fa-cloud cloud-icon cloud-1"></i>
         <i class="fas fa-cloud cloud-icon cloud-2"></i>
 
-        <h2 class="hero-subtitle">fly</h2>
+        <h2 class="hero-subtitle">บินคุ้ม เริ่มต้นที่</h2>
         
         <div class="hero-price-wrapper">
-          <h1 class="hero-price-bg">0 THB</h1>
-          <h1 class="hero-price-fg">0 THB</h1>
+          <h1 class="hero-price-bg">1,200 ฿</h1>
+          <h1 class="hero-price-fg">1,200 ฿</h1>
         </div>
         
         <p class="hero-badge">
-          🔥 Starting Price / One-way (Excl. Tax)
+          🔥 ราคาเริ่มต้น / เที่ยวเดียว (ไม่รวมภาษี)
         </p>
       </div>
 
-      <!-- Auto-Scrolling Promo Banners -->
+      <!-- Auto-Scrolling Promo Banners (ใช้ข้อมูลจริง) -->
       <div class="marquee-wrapper">
         <div class="marquee-container">
           <div class="marquee-content">
-            <!-- Set A -->
-            <div v-for="(promo, index) in promos" :key="'a'+index" class="promo-card card-yellow">
+            <!-- Loop ข้อมูลโปรโมชั่น -->
+            <div v-for="(promo, index) in promos" :key="index" 
+                 class="promo-card" 
+                 :class="index % 2 === 0 ? 'card-yellow' : 'card-red'">
+              
               <div class="card-header">
                 <div>
-                  <div class="card-label">Flight Deal</div>
-                  <div class="card-route">{{ promo.route }}</div>
+                  <div class="card-label">{{ promo.airline }}</div>
+                  <div class="card-route">{{ promo.origin }} <i class="fas fa-arrow-right small"></i> {{ promo.destination }}</div>
                 </div>
-                <i class="fas fa-plane card-icon-yellow"></i>
+                <i class="fas fa-plane" :class="index % 2 === 0 ? 'card-icon-yellow' : 'card-icon-red'"></i>
               </div>
+              
               <div class="card-body">
-                <div class="card-price-label">Starting from</div>
-                <div class="card-price">{{ promo.price }} <span>THB</span></div>
+                <div class="card-price-label">ราคาเริ่มต้น</div>
+                <div class="card-price">{{ Number(promo.price).toLocaleString() }} <span>THB</span></div>
               </div>
-              <div class="card-tag-red">Limited</div>
-            </div>
-
-            <!-- Set B (Duplicate for loop) -->
-            <div v-for="(promo, index) in promos" :key="'b'+index" class="promo-card card-red">
-              <div class="card-header">
-                <div>
-                  <div class="card-label">Hot Route</div>
-                  <div class="card-route">{{ promo.route }}</div>
-                </div>
-                <i class="fas fa-plane card-icon-red"></i>
+              
+              <div :class="index % 2 === 0 ? 'card-tag-red' : 'card-tag-yellow'">
+                {{ index % 2 === 0 ? 'Hot Deal' : 'Book Now' }}
               </div>
-              <div class="card-body">
-                <div class="card-price-label">Starting from</div>
-                <div class="card-price">{{ promo.price }} <span>THB</span></div>
-              </div>
-              <div class="card-tag-yellow">Book Now</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Search Bar (Visual) -->
+      <!-- Search Bar (ใช้งานได้จริง) -->
       <div class="search-bar-container">
         <div class="glass-search-bar">
+          
           <div class="search-input-group">
             <i class="fas fa-map-marker-alt map-icon"></i>
-            <div class="search-text">
-              <span class="label">Where to?</span>
-              <span class="value">Bangkok (BKK) <i class="fas fa-arrow-right arrow-icon"></i> Phuket (HKT)</span>
+            <div class="search-text w-100">
+              <span class="label">ต้นทาง / ปลายทาง</span>
+              <!-- Input รับค่า -->
+              <input v-model="searchQuery" 
+                     type="text" 
+                     class="glass-input" 
+                     placeholder="เช่น กรุงเทพ, ภูเก็ต..." 
+                     @keyup.enter="goToBooking">
             </div>
           </div>
+
           <div class="divider"></div>
+
           <div class="search-date-group">
-            <span class="label">Date</span>
-            <span class="value">21 Nov 2021</span>
+            <span class="label">วันที่เดินทาง</span>
+            <input type="date" class="glass-input date-input">
           </div>
-          <button class="btn-search">
+
+          <button class="btn-search" @click="goToBooking">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -94,17 +94,24 @@
 <script>
 export default {
   name: 'HomeView',
-  // เปลี่ยนจาก setup() ที่ใช้ import มาเป็น data() แบบ Options API เพื่อแก้ปัญหา import error
   data() {
     return {
+      searchQuery: '',
+      // ข้อมูลเที่ยวบินจริงจาก Database ที่เราทำไว้
       promos: [
-        { route: 'Bangkok - Chiang Mai', price: '450' },
-        { route: 'Bangkok - Phuket', price: '10' },
-        { route: 'Phuket - Chiang Rai', price: '0' },
-        { route: 'Bangkok - Osaka', price: '2,990' },
-        { route: 'Krabi - Singapore', price: '1,200' },
-        { route: 'Bangkok - Da Nang', price: '990' }
+        { airline: 'Thai Airways', origin: 'BKK', destination: 'CNX (เชียงใหม่)', price: 2500 },
+        { airline: 'AirAsia', origin: 'DMK', destination: 'HKT (ภูเก็ต)', price: 1200 },
+        { airline: 'Nok Air', origin: 'DMK', destination: 'CEI (เชียงราย)', price: 1400 },
+        { airline: 'Thai Lion Air', origin: 'DMK', destination: 'HDY (หาดใหญ่)', price: 1350 },
+        { airline: 'Thai Vietjet', origin: 'BKK', destination: 'KBV (กระบี่)', price: 1200 },
+        { airline: 'Bangkok Airways', origin: 'BKK', destination: 'USM (สมุย)', price: 2800 }
       ]
+    }
+  },
+  methods: {
+    goToBooking() {
+      // เมื่อกดค้นหา ให้ไปหน้าจองตั๋ว
+      this.$router.push('/log_air');
     }
   }
 }
@@ -140,68 +147,9 @@ export default {
   100% { background-position: 50% 100%; }
 }
 
-/* Header Styles */
-.header {
-  padding: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 50;
-}
-
-.brand {
-  font-size: 2.25rem;
-  font-weight: 900;
-  font-style: italic;
-  letter-spacing: -0.05em;
-  text-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.brand-text-red {
-  color: #D6001C;
-  -webkit-text-stroke: 1px white;
-}
-
-.nav-menu {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .nav-menu {
-    display: flex;
-    gap: 1.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    letter-spacing: 0.05em;
-  }
-  .nav-item {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  }
-  .nav-item:hover {
-    color: #fde047;
-  }
-}
-
-.btn-join {
-  background-color: #facc15;
-  color: #b91c1c;
-  padding: 0.5rem 1.5rem;
-  border-radius: 9999px;
-  font-weight: 900;
-  border: none;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
-}
-
-.btn-join:hover {
-  background-color: #fde047;
-  transform: scale(1.05);
-}
+/* Header Styles (Deleted)
+   ลบ CSS ส่วน Header ออกเพื่อลดขนาดไฟล์และไม่ให้รก
+*/
 
 /* Main Content */
 .main-content {
@@ -212,6 +160,7 @@ export default {
   position: relative;
   z-index: 10;
   padding: 0 1rem;
+  margin-top: 2rem; /* เพิ่มระยะห่างด้านบนนิดหน่อยแทน Header */
 }
 
 /* Hero Section */
@@ -239,7 +188,7 @@ export default {
 }
 
 .hero-price-bg {
-  font-size: 6rem;
+  font-size: 5rem;
   line-height: 1;
   font-weight: 900;
   font-style: italic;
@@ -254,7 +203,7 @@ export default {
 }
 
 .hero-price-fg {
-  font-size: 6rem;
+  font-size: 5rem;
   line-height: 1;
   font-weight: 900;
   font-style: italic;
@@ -270,7 +219,7 @@ export default {
 
 @media (min-width: 768px) {
   .hero-price-bg, .hero-price-fg {
-    font-size: 9rem;
+    font-size: 8rem;
   }
   .hero-subtitle {
     font-size: 3rem;
@@ -312,7 +261,7 @@ export default {
 /* Marquee / Cards */
 .marquee-wrapper {
   width: 100%;
-  max-width: 72rem;
+  max-width: 80rem;
   margin: 0 auto 2rem;
   overflow: hidden;
 }
@@ -326,7 +275,7 @@ export default {
 .marquee-content {
   display: inline-flex;
   gap: 1.5rem;
-  animation: scroll 25s linear infinite;
+  animation: scroll 30s linear infinite;
 }
 
 .marquee-content:hover {
@@ -385,7 +334,7 @@ export default {
 }
 
 .card-route {
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   font-weight: 900;
   color: #dc2626;
   line-height: 1.25;
@@ -396,7 +345,7 @@ export default {
 .card-icon-red { font-size: 1.5rem; color: #ef4444; transform: rotate(-45deg); }
 
 .card-price-label { font-size: 0.75rem; color: #6b7280; }
-.card-price { font-size: 1.875rem; font-weight: 900; color: #111827; }
+.card-price { font-size: 1.75rem; font-weight: 900; color: #111827; }
 .card-price span { font-size: 0.75rem; font-weight: normal; }
 
 .card-tag-red {
@@ -431,10 +380,11 @@ export default {
   max-width: 56rem;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 1rem;
 }
 
 .glass-search-bar {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 9999px;
@@ -452,40 +402,62 @@ export default {
   align-items: center;
   gap: 1rem;
   flex: 1;
-  padding-left: 2rem;
-  color: rgba(255, 255, 255, 0.9);
+  padding-left: 1.5rem;
+  color: white;
 }
 
 .map-icon { font-size: 1.25rem; color: #facc15; }
 
 .search-text { display: flex; flex-direction: column; }
-.search-text .label { font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.7; }
-.search-text .value { font-size: 1.125rem; font-weight: bold; }
+.search-text .label { font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8; text-align: left; }
 
-.arrow-icon { margin: 0 0.5rem; font-size: 0.875rem; }
+/* Custom Input Styling */
+.glass-input {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  width: 100%;
+  outline: none;
+}
+.glass-input::placeholder {
+  color: rgba(255,255,255,0.6);
+  font-weight: normal;
+}
 
-.divider { height: 2.5rem; width: 1px; background-color: rgba(255, 255, 255, 0.2); margin: 0 1rem; }
+/* Date input styling to match */
+.date-input {
+  color: white;
+  font-family: 'Kanit', sans-serif;
+}
+.date-input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.divider { height: 2.5rem; width: 1px; background-color: rgba(255, 255, 255, 0.3); margin: 0 1rem; }
 
 .search-date-group {
   display: none;
   flex-direction: column;
-  margin-right: 2rem;
-  color: rgba(255, 255, 255, 0.9);
+  margin-right: 1rem;
+  color: white;
+  width: 150px;
 }
 
 @media (min-width: 768px) {
   .search-date-group { display: flex; }
 }
 
-.search-date-group .label { font-size: 0.75rem; font-weight: bold; text-transform: uppercase; opacity: 0.7; }
-.search-date-group .value { font-size: 1.125rem; font-weight: bold; }
+.search-date-group .label { font-size: 0.75rem; font-weight: bold; text-transform: uppercase; opacity: 0.8; text-align: left; }
 
 .btn-search {
   background-image: linear-gradient(to right, #dc2626, #b91c1c);
   color: white;
   border-radius: 9999px;
   height: 4rem;
-  width: 8rem;
+  width: 4rem; /* กลมๆ ในมือถือ */
   font-weight: bold;
   font-size: 1.25rem;
   border: none;
@@ -495,6 +467,10 @@ export default {
   cursor: pointer;
   transition: transform 0.2s;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+    .btn-search { width: 8rem; } /* ยาวในจอคอม */
 }
 
 .btn-search:hover {
